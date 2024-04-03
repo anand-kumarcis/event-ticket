@@ -14,7 +14,9 @@
 
   <body>
     <br>
-    <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-danger' %>
+    <% if current_user.present? %>
+      <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-danger' %>
+    <% end %>
     <hr>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
