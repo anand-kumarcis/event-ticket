@@ -1,17 +1,21 @@
-postgresql: &postgresql
+default: &default
   adapter: postgresql
   encoding: utf8
   host: localhost
-  database: event_management_dev
-  pool: 5
   username: postgres
   password: postgres
 
 development:
-  <<: *postgresql
+  <<: *default
+  database: event_management_dev
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: event_management_test
 
 production:
-  <<: *postgresql
-
-staging:
-  <<: *postgresql
+  <<: *default
+  database: event_management_prod

@@ -22,14 +22,21 @@ Rails.application.configure do
   if Rails.root.join("tmp/caching-dev.txt").exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
-
+  
+    # Use a cache store appropriate for development.
     config.cache_store = :memory_store
+  
+    # Adjust cache expiration for development.
+    config.cache_store_options = { expires_in: 2.minutes }
+  
     config.public_file_server.headers = {
       "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
+    # Disable caching in development by default.
     config.action_controller.perform_caching = false
-
+  
+    # Use a null cache store to effectively disable caching.
     config.cache_store = :null_store
   end
 

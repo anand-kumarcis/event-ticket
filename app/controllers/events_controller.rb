@@ -3,7 +3,9 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy, :book_ticket]
 
   def index
-    @events = Event.all
+    @events = Rails.cache.fetch('all_events', expires_in: 5.minutes) do
+      Event.all
+    end
   end
 
   def show; end
