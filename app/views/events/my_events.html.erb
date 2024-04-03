@@ -1,0 +1,30 @@
+<p>
+  <%= link_to 'All Events', events_path %> |
+  <%= link_to 'My Booked Events', booked_events_events_path(user_id: current_user.id) %> |
+  <%= link_to 'New Event', new_event_path %>
+</p>
+<h3 class="text-center"> My Events </h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Total Tickets</th>
+      <th>Booked Tickets</th>
+      <th>Available Tickets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= link_to "#{event.name}", event_path(event.id) %></td>
+        <td><%= format_date(event.date) %></td>
+        <td><%= convert_time(event.time) %></td>
+        <td><%= (event.total_tickets || 'N/A') %></td>
+        <td><%= (event.booked_tickets || 'N/A') %></td>
+        <td><%= available_tickets_for_event(event) %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
