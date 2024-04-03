@@ -1,0 +1,17 @@
+postgresql: &postgresql
+  adapter: postgresql
+  encoding: utf8
+  host: localhost
+  database: event_management_dev
+  pool: 5
+  username: postgres
+  password: postgres
+
+development:
+  <<: *postgresql
+
+production:
+  <<: *postgresql
+
+staging:
+  <<: *postgresql

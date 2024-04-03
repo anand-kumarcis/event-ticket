@@ -1,0 +1,48 @@
+<p>
+  <%= link_to 'All Events', events_path %> |
+  <%= link_to 'My Events', my_events_events_path(user_id: current_user.id) %> |
+  <%= link_to 'My Booked Events', booked_events_events_path(user_id: current_user.id) %>
+</p>
+
+<div class="show">
+  <h3><%= @event.name %></h3>
+  <div class="row">
+    <div class="col-md-6">
+      <p><strong>Description:</strong> <%= @event.description %></p>
+      <p><strong>Location:</strong> <%= @event.location %></p>
+      <p><strong>Date:</strong> <%= format_date(@event.date) %></p>
+      <p><strong>Time:</strong> <%= convert_time(@event.time) %></p>
+      <p><strong>Total Tickets:</strong> <%= @event.total_tickets %></p>
+      <p><strong>Booked Tickets:</strong> <%= @event.booked_tickets %></p>
+      <p><strong>Available Tickets:</strong> <%= available_tickets_for_event(@event) %></p>
+      <p><strong>Created By:</strong> <%= @event.user.email %></p>
+      <% if @event.user_id == current_user.id %>
+        <p>
+          <%= link_to 'Edit Event', edit_event_path(@event.id) %> |
+          <%= link_to 'Delete', event_path(@event), data: { turbo_method: :delete,turbo_confirm: 'Are you sure?' } %>
+        <p>
+      <% end %>
+    </div>
+  </div>
+
+  <hr>
+
+  <h3>Book Ticket</h3>
+  <% if tickets_are_available?(@event) %>
+    <%= form_with(url: book_ticket_event_path(@event), method: :post) do |form| %>
+      <div class="form-group">
+        <%= form.label :quantity %>
+        <%= form.number_field :quantity, class: "form-control", style: 'width: 200px;', min: 1, max: available_tickets_for_event(@event), value: 1 %>
+      </div>
+
+      <%= form.hidden_field :event_id, value: @event.id %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+
+      <div class="form-group">
+        <%= form.submit "Book", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>Sorry No tickets available !</p>
+  <% end %>
+</div>
