@@ -45,16 +45,16 @@ class EventsController < ApplicationController
 
   # to book the ticket for an event
   def book_ticket
-    user = current_user 
     ticket = Ticket.new(ticket_params)
+    
     if tickets_are_available?(ticket, @event)
       ticket.save
-      booked_ticket = @event.booked_tickets + ticket.quantity
-      @event.update(booked_tickets: booked_ticket)
+      @event.update(booked_tickets: @event.booked_tickets.to_i + ticket.quantity.to_i)
       flash[:notice] = "Tickets booked successfully"
     else
       flash.now[:alert] = "Failed to book tickets"
     end
+    
     redirect_to event_path(@event.id)
   end
 

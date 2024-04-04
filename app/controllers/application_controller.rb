@@ -17,8 +17,9 @@ class ApplicationController < ActionController::Base
   def session_expired?
     # Adjust the session timeout duration as needed.
     # debugger
-    session_timeout_duration = 2.minutes.to_i
-    Time.current > Time.parse(session[:last_activity_time]) + session_timeout_duration
+    session_timeout_duration = 2.hours.to_i
+    Time.current > (Time.zone.parse(session[:last_activity_time].to_s) + session_timeout_duration)
+
   end
 
 end

@@ -14,9 +14,10 @@ module EventsConcern
 
   # to check if there are tickets available for a particular event
   def tickets_are_available?(ticket, event)
-    ticket_count = ticket.quantity
-    booked_tickets = event.booked_tickets
-    total_tickets = event.total_tickets
+    ticket_count = ticket.quantity.to_i
+    booked_tickets = event.booked_tickets.to_i
+    total_tickets = event.total_tickets.to_i
     (total_tickets - (ticket_count + booked_tickets)) >= 0 ? true : false
   end
+  
 end
