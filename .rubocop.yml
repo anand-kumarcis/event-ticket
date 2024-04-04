@@ -1,1 +1,7 @@
 inherit_from: .rubocop_todo.yml
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*.rb
+    - config/environments/test.rb
+    - config/routes.rb # Routes is a DSL that requires us to write large blocks.

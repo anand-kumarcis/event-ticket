@@ -19,7 +19,5 @@ class ApplicationController < ActionController::Base
     # debugger
     session_timeout_duration = 2.hours.to_i
     Time.current > (Time.zone.parse(session[:last_activity_time].to_s) + session_timeout_duration)
-
   end
-
 end

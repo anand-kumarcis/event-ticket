@@ -62,15 +62,15 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails', '>= 3.9.0'
   gem 'rails-controller-testing'
+  gem 'rspec-rails', '>= 3.9.0'
 end
 
 # devise for authentication
 gem 'devise'
 
-gem 'rubocop', '~> 1.57'
-gem 'rubocop-rails', '~> 2.22'
 gem 'bootstrap', '~> 5.3', '>= 5.3.2'
 gem 'jquery-rails'
+gem 'rubocop', '~> 1.57'
+gem 'rubocop-rails', '~> 2.22'
 gem 'sassc-rails'

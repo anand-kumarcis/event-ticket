@@ -19,5 +19,4 @@ module EventsConcern
     total_tickets = event.total_tickets.to_i
     (total_tickets - (ticket_count + booked_tickets)) >= 0 ? true : false
   end
-  
 end

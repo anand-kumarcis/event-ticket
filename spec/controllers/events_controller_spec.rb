@@ -5,7 +5,7 @@ RSpec.describe EventsController, type: :controller do
   let(:valid_attributes) { { name: "Updated Event Name" } }
   let(:invalid_attributes) { { name: "" } }
   let(:event) { create(:event) }
-  let(:event1) { create(:event, user: user) }
+  let(:event1) { create(:event, user:) }
 
   before do
     sign_in user
@@ -74,7 +74,7 @@ RSpec.describe EventsController, type: :controller do
     end
   end
 
-  describe "DELETE #destroy" do 
+  describe "DELETE #destroy" do
     it "sets a flash notice message" do
       delete :destroy, params: { id: event1.id }
       expect(flash[:notice]).to eq("Event deleted successfully")
@@ -92,9 +92,9 @@ RSpec.describe EventsController, type: :controller do
 
     context "with valid parameters" do
       it "creates a new event" do
-        expect {
+        expect do
           post :create, params: { event: valid_event_params }
-        }.to change(Event, :count).by(1)
+        end.to change(Event, :count).by(1)
       end
 
       it "redirects to my_events page" do
@@ -110,9 +110,9 @@ RSpec.describe EventsController, type: :controller do
 
     context "with invalid parameters" do
       it "does not create a new event" do
-        expect {
+        expect do
           post :create, params: { event: invalid_event_params }
-        }.not_to change(Event, :count)
+        end.not_to change(Event, :count)
       end
 
       it "renders new template" do
@@ -130,9 +130,9 @@ RSpec.describe EventsController, type: :controller do
   describe 'POST #book_ticket' do
     let(:event) { create(:event) }
     let(:ticket_params) { { quantity: 1 } } # Adjust as needed based on your ticket_params
-    before do 
+    before do
       post :book_ticket, params: { id: event.id, ticket: ticket_params }
-    end  
+    end
     context 'when tickets are available' do
       it 'creates a new ticket and updates event booked_tickets' do
         expect(flash[:notice]).to eq('Tickets booked successfully')
@@ -146,9 +146,9 @@ RSpec.describe EventsController, type: :controller do
       end
 
       it 'does not create a new ticket' do
-        expect {
+        expect do
           post :book_ticket, params: { id: event.id, ticket: ticket_params }
-        }.not_to change(Ticket, :count)
+        end.not_to change(Ticket, :count)
       end
     end
   end

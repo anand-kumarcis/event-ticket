@@ -11,11 +11,11 @@
 user = User.create(email: 'user123@email.com', password: '123456')
 N_EVENTS = 200
 N_EVENTS.times do |i|
-    Event.create(name: "Event_0#{i}", description: "desc", location: "location", date: DateTime.now, time: "12:00", total_tickets: 20, booked_tickets: 0, user_id: user.id)
+  Event.create(name: "Event_0#{i}", description: "desc", location: "location", date: DateTime.now, time: "12:00", total_tickets: 20, booked_tickets: 0, user_id: user.id)
 end
 
 user2 = User.create(email: "user456@email.com", password: '123456')
 N_EVENTS2 = 200
 N_EVENTS2.times do |i|
-    Event.create(name: "Event_1#{i}", description: "desc", location: "location", date: DateTime.now, time: "12:00", total_tickets: 20, booked_tickets: 0, user_id: user2.id)
+  Event.create(name: "Event_1#{i}", description: "desc", location: "location", date: DateTime.now, time: "12:00", total_tickets: 20, booked_tickets: 0, user_id: user2.id)
 end
