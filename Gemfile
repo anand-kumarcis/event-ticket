@@ -71,3 +71,6 @@ gem 'devise'
 
 gem 'rubocop', '~> 1.57'
 gem 'rubocop-rails', '~> 2.22'
+gem 'bootstrap', '~> 5.3', '>= 5.3.2'
+gem 'jquery-rails'
+gem 'sassc-rails'
