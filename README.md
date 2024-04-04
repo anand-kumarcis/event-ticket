@@ -1,24 +1,36 @@
-# README
+# Event Ticket Managment
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
 
-Things you may want to cover:
+### Prerequisites
 
-* Ruby version
+Before you begin, ensure you have met the following requirements:
 
-* System dependencies
+- Ruby [3.2.2]
+- Rails [7.1.3] 
+- PostgreSQL 
+- Bundler 
 
-* Configuration
+### Setup
 
-* Database creation
+1. Clone the repository:
 
-* Database initialization
+   ```bash
+   git clone https://github.com/anand-kumarcis/event-ticket.git
 
-* How to run the test suite
+2. Install dependencies:   
 
-* Services (job queues, cache servers, search engines, etc.)
+    bundle install
 
-* Deployment instructions
+3. Create the database:
 
-* ...
+    rails db:create
+
+4. Run migrations:
+
+    rails db:migrate
+
+5. (Optional) Seed the database with sample data:
+
+    rails db:seed
+
